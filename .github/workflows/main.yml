@@ -21,6 +21,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - 
+        name: Output Run ID
+        run: echo ${{ github.run_id }}
+      - 
+        name: Output Run Number
+        run: echo ${{ github.run_number }}
       -
         name: Build and push
         id: docker_build
