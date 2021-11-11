@@ -32,10 +32,10 @@ jobs:
       -
         name: Build and push
         id: docker_build
-        build-args:
-          - name: BUILD_NUM
-            value: ${{ github.run_number }}
         uses: docker/build-push-action@v2
         with:
           push: true
           tags: amisovic/kubia:${{ github.run_number }}
+          build-args:
+            - name: BUILD_NUM
+              value: ${{ github.run_number }}
