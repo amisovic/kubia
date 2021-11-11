@@ -30,4 +30,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: amisovic/kubia:${{ github.run_number }}
+          tags: amisovic/kubia:${GITHUB_REF##*/}_${{ github.run_number }}
