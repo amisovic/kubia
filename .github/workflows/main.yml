@@ -26,7 +26,7 @@ jobs:
         run: echo ${{ github.run_number }}
       - name: Extract branch name
         shell: bash
-        run: echo "${GITHUB_REF}"
+        run: echo "REF - ${GITHUB_REF}     REF filtered - ${GITHUB_REF#refs/heads/}"
       - name: Test
         run: echo "${BRANCH_NAME}"  
       -
@@ -35,4 +35,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: amisovic/kubia:${{ GITHUB_REF#refs/heads/ }}_${{ github.run_number }}
+          tags: amisovic/kubia:${{ github.run_number }}
