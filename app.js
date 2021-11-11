@@ -10,6 +10,7 @@ var handler = function(request, response) {
   requestCount++;
   response.writeHead(200);
   response.write("VERSION: 28! " + "\n");
+  response.write("BUILD NUMBER:  "  + process.env.BUILD_NUM + "\n"); 
   response.write("Request Count: " + requestCount + "\n");
   response.write("Request comes from IP: " + request.connection.remoteAddress + "\n");
   response.end("You've hit " + os.hostname() + "\n");
