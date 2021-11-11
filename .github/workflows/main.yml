@@ -36,6 +36,5 @@ jobs:
         with:
           push: true
           tags: amisovic/kubia:${{ github.run_number }}
-          build-args:
-            - name: BUILD_NUM
-              value: ${{ github.run_number }}
+          build-args: |
+            BUILD_NUM = ${{ github.run_number }}
