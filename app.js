@@ -9,7 +9,7 @@ var handler = function(request, response) {
   console.log("Received request from " + request.connection.remoteAddress);
   requestCount++;
   response.writeHead(200);
-  response.write("VERSION: 3333333333! " + "\n");
+  response.write("VERSION: 4! " + "\n");
   response.write("Request Count: " + requestCount + "\n");
   response.write("Request comes from IP: " + request.connection.remoteAddress + "\n");
   response.end("You've hit " + os.hostname() + "\n");
