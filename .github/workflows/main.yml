@@ -50,7 +50,7 @@ jobs:
           cd kubiacd
           git config user.name "Aleksandar Misovic"
           git config user.email "aleksandar.misovic72@gmail.com"
-          sed -i "s/        image: amisovic\/kubia:.*/        image: amisovic\/kubia:${BUILD_NUMBER}/" deployment.yaml
+          sed -i "s/        image: amisovic\/kubia:.*/        image: amisovic\/kubia:${BUILD_NUMBER}/" argocd/deployment.yaml
 
           git add argocd/deployment.yaml
           git commit -m "Updated to version for new build: ${BUILD_NUMBER} "
