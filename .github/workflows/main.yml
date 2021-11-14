@@ -38,3 +38,22 @@ jobs:
           tags: amisovic/kubia:${{ github.run_number }}
           build-args: |
             BUILD_ARG=${{ github.run_number }}
+      - 
+        name: Push to Generate API module
+        env:
+          GITHUBACT_TOKEN: ${{ secrets.GITHUBACTIONS_TOKEN }}
+        run: |
+
+          git clone https://amisovic:$GITHUBACT_TOKEN@github.com/amisovic/kubiacd.git 
+         
+          cd kubiacd
+          git config user.name "Aleksandar Misovic"
+          git config user.email "aleksandar.misovic72@gmail.com"
+
+          echo "#Added line" >> argocd/deployment.yaml
+          git add argocd/deployment.yaml
+          git commit -m "Added comment at the end "
+
+          git remote -v 
+
+          git push  
