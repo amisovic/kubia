@@ -39,9 +39,10 @@ jobs:
           build-args: |
             BUILD_ARG=${{ github.run_number }}
       - 
-        name: Push to Generate API module
+        name: Push to kubiacd repo - for ArgoCD to pick up the change
         env:
           GITHUBACT_TOKEN: ${{ secrets.GITHUBACTIONS_TOKEN }}
+          BUILD_NUMBER: ${{ github.run_number }}
         run: |
 
           git clone https://amisovic:$GITHUBACT_TOKEN@github.com/amisovic/kubiacd.git 
@@ -49,10 +50,10 @@ jobs:
           cd kubiacd
           git config user.name "Aleksandar Misovic"
           git config user.email "aleksandar.misovic72@gmail.com"
+          sed -i "s/        image: amisovic\/kubia:.*/        image: amisovic\/kubia:${BUILD_NUMBER}/" deployment.yaml
 
-          echo "#Added line" >> argocd/deployment.yaml
           git add argocd/deployment.yaml
-          git commit -m "Added comment at the end "
+          git commit -m "Updated to version for new build: ${BUILD_NUMBER} "
 
           git remote -v 
 
