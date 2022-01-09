@@ -15,7 +15,7 @@ var handler = function(request, response) {
   response.write("VERSION: Version 1.6 - pushed at 20:22! " + "\n");
   response.write("Request Count: " + requestCount + "\n");
   response.write("Request comes from IP: " + request.connection.remoteAddress + "\n");
-  response.end("You've hit " + os.hostname() + "\n");
+  response.write("You've hit " + os.hostname() + "\n");
   response.write(" \n");
   response.write("=============================================== \n");
   response.end("RESPOSNSE_MSG:  "  + process.env.RESPOSNSE_MSG + "\n");
