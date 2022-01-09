@@ -18,7 +18,7 @@ var handler = function(request, response) {
   response.end("You've hit " + os.hostname() + "\n");
   response.write(" \n");
   response.write("=============================================== \n");
-  response.write("RESPOSNSE_MSG:  "  + process.env.RESPOSNSE_MSG + "\n");
+  response.end("RESPOSNSE_MSG:  "  + process.env.RESPOSNSE_MSG + "\n");
 
 };
 
