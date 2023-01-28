@@ -45,14 +45,14 @@ jobs:
           GITHUBACT_TOKEN: ${{ secrets.GITHUBACTIONS_TOKEN }}
           BUILD_NUMBER: ${{ github.run_number }}
         run: |
-
+          echo "Checkout repo kubiacd."
           git clone https://amisovic:$GITHUBACT_TOKEN@github.com/amisovic/kubiacd.git 
          
           cd kubiacd
           git config user.name "Aleksandar Misovic"
           git config user.email "aleksandar.misovic72@gmail.com"
           sed -i "s/        image: amisovic\/kubia:.*/        image: amisovic\/kubia:${BUILD_NUMBER}/" argocd/deployment.yaml
-
+          echo "Add edited file and push to kubiacd repo."
           git add argocd/deployment.yaml
           git commit -m "Updated to version for new build: ${BUILD_NUMBER} "
 
