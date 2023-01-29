@@ -10,17 +10,22 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Get current date
+      - name: Get current date and test how GITHUB_OUTPUT works
         id: dateee
         run: | 
           echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-          echo "date2=PERICA" >> $GITHUB_OUTPUT
+          echo "varijabla=PERICA" >> $GITHUB_OUTPUT
           cat  $GITHUB_OUTPUT
       - name: Test with environment variables
-        run: echo $TAG_NAME - $RELEASE_NAME
         env:
           TAG_NAME: date-tag-${{ steps.dateee.outputs.date }}
-          RELEASE_NAME: custom-release-${{ steps.dateee.outputs.date2 }}
+          RELEASE_NAME: custom-release-${{ steps.dateee.outputs.varijabla }}
+          run: echo $TAG_NAME - $RELEASE_NAME
+      - name: Output Some variables 
+        run: | 
+          echo ${{ github.run_number }}
+          echo ${{ github.sha }}
+          echo ${{ steps.dateee.outputs.date }} 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -30,11 +35,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Output Some variables 
-        run: | 
-          echo ${{ github.run_number }}
-          echo ${{ github.sha }}
-          echo ${{ steps.dateee.outputs.date }} 
       - name: Extract branch name
         shell: bash
         run: echo "REF - ${GITHUB_REF}     REF filtered - ${GITHUB_REF#refs/heads/}"
