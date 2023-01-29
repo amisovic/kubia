@@ -13,7 +13,7 @@ var handler = function(request, response) {
   response.write("BUILD_NUM:  "  + process.env.BUILD_NUM + "\n");
   response.write("=============================================== \n");
   response.write(" \n");
-  response.write("Commit: " + process.env.COMMIT + "Built on: " + process.env.BULD_DATE + "\n");
+  response.write("Commit: " + process.env.COMMIT + "Built on: " + process.env.BUILD_DATE + "\n");
   response.write("Request Count: " + requestCount + "\n");
   //response.write("Request comes from IP: " + request.connection.remoteAddress + "\n");
   response.write("You've hit " + os.hostname() + "\n");
