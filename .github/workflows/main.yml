@@ -22,15 +22,16 @@ jobs:
       - name: Output Run Number
         run: echo ${{ github.run_number }}
       - name: Get current date
-        id: date
+        id: dateee
         run: | 
           echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "date2=PERICA" >> $GITHUB_OUTPUT
           cat  $GITHUB_OUTPUT
       - name: Test with environment variables
         run: echo $TAG_NAME - $RELEASE_NAME
         env:
-          TAG_NAME: nightly-tag-${{ steps.date.outputs.date }}
-          RELEASE_NAME: nightly-release-${{ steps.date.outputs.date }}
+          TAG_NAME: nightly-tag-${{ steps.dateee.outputs.date }}
+          RELEASE_NAME: nightly-release-${{ steps.dateee.outputs.date2 }}
       - name: Extract branch name
         shell: bash
         run: echo "REF - ${GITHUB_REF}     REF filtered - ${GITHUB_REF#refs/heads/}"
