@@ -30,8 +30,11 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Output Run Number
-        run: echo ${{ github.run_number }}
+      - name: Output Some variables 
+        run: | 
+          echo ${{ github.run_number }}
+          echo ${{ github.sha }}
+          echo ${{ steps.dateee.outputs.date }} 
       - name: Extract branch name
         shell: bash
         run: echo "REF - ${GITHUB_REF}     REF filtered - ${GITHUB_REF#refs/heads/}"
@@ -44,7 +47,7 @@ jobs:
           build-args: |
             BUILD_ARG=${{ github.run_number }}
             COMMIT=${{ github.sha }}
-            BULD_DATE=${{ steps.dateee.outputs.date }} 
+            BUILD_DATE=${{ steps.dateee.outputs.date }} 
       - name: Push to kubiacd repo - for ArgoCD to pick up the change
         env:
           GITHUBACT_TOKEN: ${{ secrets.GITHUBACTIONS_TOKEN }}
