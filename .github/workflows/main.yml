@@ -36,9 +36,9 @@ jobs:
         id: korak_datum
         run: echo "::set-output name=datum::$(date +'%Y-%m-%d')"
       - name: Korak sa datumom
+        run: echo $DATUM
         env: 
           DATUM: datum-{{ steps.korak_datum.outputs.datum }}
-        run: echo $DATUM
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
